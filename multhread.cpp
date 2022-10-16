@@ -45,12 +45,13 @@ void multhread::run()
                 int res = ethernetPacketHandle(captureContent,info);
                 if(res)
                 {
-
+                    int len = captureHeader->len;
                     dataPacketItem data;
                     data.setInfo(info);
                     data.setLength(captureHeader->len);
                     data.setTimestamp(timeString);
                     data.setProtocolType(res);
+                    data.setPointerToContent(captureContent,len);
                     emit send(data);
                 }
 

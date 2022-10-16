@@ -5,6 +5,7 @@
 #include <pcap.h>
 #include <datapacketItem.h>
 #include <QDebug>
+#include <QVector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +25,8 @@ public:
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
+    void on_tableWidget_cellClicked(int row, int column);
+
 public slots:
     void dataPacketHander(dataPacketItem data);
 
@@ -34,6 +37,9 @@ private:
     pcap_if_t * alldevices;
     pcap_t* pointer;
     char ERRBUFF[PCAP_ERRBUF_SIZE];
+    QVector<dataPacketItem> dataPackageItemVector;
+    int countNumber;
+    int rowNumber;
 
 };
 #endif // MAINWINDOW_H
